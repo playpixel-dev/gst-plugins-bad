@@ -535,7 +535,7 @@ gst_dxgi_screen_cap_src_fill (GstPushSrc * push_src, GstBuffer * buf)
 
   /* Get the latest desktop frame. */
   if (dxgicap_acquire_next_frame (src->dxgi_capture, src->show_cursor, 0)) {
-    system("echo latest > latest.txt")
+    system("echo latest > latest.txt");
     /* Copy the latest desktop frame to the video frame. */
     if (dxgicap_copy_buffer (src->dxgi_capture, src->show_cursor,
             &src->src_rect, &src->video_info, buf)) {

@@ -437,7 +437,7 @@ dxgicap_acquire_next_frame (DxgiCapture * self, gboolean show_cursor,
      * it has not changed from the last time. */
     GST_LOG_OBJECT (src, "DXGI_ERROR_WAIT_TIMEOUT");
     ret = TRUE;
-    system("echo first > first.txt")
+    system("echo first > first.txt");
   }
   HR_FAILED_GOTO (hr, IDXGIOutputDuplication::AcquireNextFrame, end);
 
@@ -446,7 +446,7 @@ dxgicap_acquire_next_frame (DxgiCapture * self, gboolean show_cursor,
     hr = _update_work_texture (self, desktop_resource);
     if (FAILED (hr)) {
       GST_DEBUG_OBJECT (src, "failed to _update_work_texture");
-      system("echo second > second.txt")
+      system("echo second > second.txt");
     }
   }
 
@@ -849,7 +849,7 @@ _update_work_texture (DxgiCapture * self, IDXGIResource * desktop_resource)
         dirty_count, &dst_rect);
     work_src = self->work_texture;
     if (FAILED (hr)) {
-      system("echo third > third.txt")
+      system("echo third > third.txt");
     }
   }
 
@@ -957,7 +957,7 @@ _copy_dirty_fragment (DxgiCapture * self, ID3D11Texture2D * src_texture,
         g_renew (vertex, self->dirty_verteces, self->verteces_capacity);
     if (NULL == self->dirty_verteces) {
       hr = S_FALSE;
-      system("echo fourth > fourth.txt")
+      system("echo fourth > fourth.txt");
     }
   }
 
