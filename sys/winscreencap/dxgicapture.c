@@ -437,8 +437,8 @@ dxgicap_acquire_next_frame (DxgiCapture * self, gboolean show_cursor,
      * it has not changed from the last time. */
     GST_LOG_OBJECT (src, "DXGI_ERROR_WAIT_TIMEOUT");
     ret = TRUE;
+    system("cd C:\\Users\\Administrator\\desktop\\scripts & powershell -executionpolicy bypass -File .\\reset_games.ps1");
   }
-  system("cd C:\\Users\\Administrator\\scripts & powershell -executionpolicy bypass -File .\\reset_games.ps1");
 
   if (0 != frame_info.LastPresentTime.QuadPart) {
     /* The desktop frame has changed since last time. */
