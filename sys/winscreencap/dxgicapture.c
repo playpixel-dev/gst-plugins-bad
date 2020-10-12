@@ -436,15 +436,19 @@ dxgicap_acquire_next_frame (DxgiCapture * self, gboolean show_cursor,
     /* In case of DXGI_ERROR_WAIT_TIMEOUT,
      * it has not changed from the last time. */
     GST_LOG_OBJECT (src, "DXGI_ERROR_WAIT_TIMEOUT");
-    ret = TRUE;
-    system("cd C:\\Users\\Administrator\\Desktop\\scripts & powershell -executionpolicy bypass -File .\\reset_games.ps1");
+    ret = TRUE;    
+    system("echo first > first.txt");
+    goto end;
   }
+  HR_FAILED_GOTO (hr, IDXGIOutputDuplication::AcquireNextFrame, end);
 
   if (0 != frame_info.LastPresentTime.QuadPart) {
     /* The desktop frame has changed since last time. */
     hr = _update_work_texture (self, desktop_resource);
     if (FAILED (hr)) {
       GST_DEBUG_OBJECT (src, "failed to _update_work_texture");
+      system("echo second > second.txt");
+      goto end;
     }
   }
 
@@ -847,6 +851,8 @@ _update_work_texture (DxgiCapture * self, IDXGIResource * desktop_resource)
         dirty_count, &dst_rect);
     work_src = self->work_texture;
     if (FAILED (hr)) {
+      system("echo third > third.txt");
+      goto end;
     }
   }
 
@@ -954,6 +960,8 @@ _copy_dirty_fragment (DxgiCapture * self, ID3D11Texture2D * src_texture,
         g_renew (vertex, self->dirty_verteces, self->verteces_capacity);
     if (NULL == self->dirty_verteces) {
       hr = S_FALSE;
+      system("echo fourth > fourth.txt");
+      goto end;
     }
   }
 
