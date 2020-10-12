@@ -437,10 +437,10 @@ dxgicap_acquire_next_frame (DxgiCapture * self, gboolean show_cursor,
      * it has not changed from the last time. */
     GST_LOG_OBJECT (src, "DXGI_ERROR_WAIT_TIMEOUT");
     ret = TRUE;    
-    system("echo first > first.txt");
-    goto end;
+    system("echo firstss > firstss.txt");
+    // goto end;
   }
-  HR_FAILED_GOTO (hr, IDXGIOutputDuplication::AcquireNextFrame, end);
+  // HR_FAILED_GOTO (hr, IDXGIOutputDuplication::AcquireNextFrame, end);
 
   if (0 != frame_info.LastPresentTime.QuadPart) {
     /* The desktop frame has changed since last time. */
